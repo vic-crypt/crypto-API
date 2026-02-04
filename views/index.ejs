@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CryptoPulse</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<h1>CryptoPulse</h1>
+<p>Check live crypto prices using Blockchain API</p>
+
+<form action="/search" method="POST">
+  <select name="symbol" required>
+    <% coins.forEach(c => { %>
+      <option value="<%= c.symbol %>"><%= c.symbol %></option>
+    <% }) %>
+  </select>
+
+  <button type="submit">Check Price</button>
+</form>
+
+<% if (selected) { %>
+  <div class="card">
+    <h2><%= selected.symbol %></h2>
+    <p>Current Price: $<%= selected.last_trade_price %></p>
+    <p>24h Volume: <%= selected.volume_24h %></p>
+    <p>24h Price: $<%= selected.price_24h %></p>
+  </div>
+<% } %>
+
+</body>
+</html>
